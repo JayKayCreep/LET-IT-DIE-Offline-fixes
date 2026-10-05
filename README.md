@@ -1,45 +1,45 @@
-# LET IT DIE PC Fixes
+# LET IT DIE Offline Fixes
 
-Small Windows x64 D3D9 wrappers for LET IT DIE Offline on Steam.
+Borderless fullscreen and a texture-blur fix for **LET IT DIE Offline on Steam**, Windows x64.
 
-| Download | Features |
+## Download
+
+| Version | What it does |
 | --- | --- |
-| [Borderless 0.1.1](downloads/LET-IT-DIE-Borderless-0.1.1.zip) | Borderless windowed presentation |
-| [Borderless + Texture Fix 0.2.0](downloads/LET-IT-DIE-Borderless-Texture-Fix-0.2.0.zip) | Borderless presentation and automatic disabling of engine mip fading |
+| [Borderless + Texture Fix 0.2.0](https://github.com/JayKayCreep/LET-IT-DIE-Offline-fixes/raw/refs/heads/main/downloads/LET-IT-DIE-Borderless-Texture-Fix-0.2.0.zip) | Borderless fullscreen and automatic removal of the engine's mip-fade transition, addressing the tested blur and delayed sharpening. |
+| [Borderless 0.1.1](https://github.com/JayKayCreep/LET-IT-DIE-Offline-fixes/raw/refs/heads/main/downloads/LET-IT-DIE-Borderless-0.1.1.zip) | Borderless fullscreen only. |
 
-Install one version at a time.
+**Choose one version.** Use 0.2.0 for both fixes, or 0.1.1 if you only need borderless mode.
 
 ## Install
 
-1. Close the game. In Steam, choose **Browse local files**, then open `Binaries\Win64` beside `BrgGame-Steam.exe`.
-2. Back up any existing `d3d9.dll` outside the game folder. Copy the DLL from your chosen download into `Binaries\Win64`.
-3. Use the game's Fullscreen setting. The working configuration uses `mbFullScreen=True` in `BrgGame\Config\BrgGraphicsConfig.ini`; back up that file before editing it manually.
-4. Launch normally. Actual presentation is borderless windowed, allowing desktop chat overlays to appear above the game. The combined version applies its supported texture fix automatically.
+1. Close the game. In Steam, select **Manage → Browse local files**, then open `Binaries\Win64` (the folder containing `BrgGame-Steam.exe`).
+2. Extract your chosen ZIP. If that folder already contains `d3d9.dll`, back it up outside the game folder before copying the downloaded `d3d9.dll` there.
+3. Enable **Fullscreen** in the game's settings and launch normally.
 
-Do not edit `SteamPCRelease-BrgEngine.ini` or `SteamPCRelease-BrgGHMEngine.ini`. No launch options or F8 switch are required. Other mods that supply `d3d9.dll` cannot simply be installed alongside this one.
+The game will use borderless windowed presentation, allowing desktop chat overlays above it. Version 0.2.0 also applies the texture fix automatically on a supported executable.
 
-## Texture-fix compatibility
+No launch options or hotkeys are required. Do not edit `SteamPCRelease-BrgEngine.ini` or `SteamPCRelease-BrgGHMEngine.ini`. Other mods supplying `d3d9.dll` cannot be installed alongside this one directly.
 
-The texture fix disables the engine's mip-fade transition that caused repeatable blur and delayed sharpening during the tested boundary crossing. It requires this exact executable SHA-256:
+## Compatibility and testing
 
-`716046F09F398A61B359CC1DD08366F3FD1D867605949D6729E25C3A07A4DBAF`
+- Intended for the Windows x64 Steam offline edition.
+- **0.2.0:** the maintainer reports several hours of in-game testing with the automatic texture fix working and no crashes or other issues observed.
+- **0.1.1:** borderless mode confirmed in-game with a desktop chat overlay.
+- The texture fix checks the executable and engine state before applying. If compatibility checks fail, it leaves the texture setting untouched; borderless mode remains available.
+- Game updates require revalidation. Other game builds, multi-monitor setups and other graphics wrappers are unverified.
+- This addresses the tested mip-fade blur; it does not guarantee maximum detail for every texture or fix all streaming problems.
 
-The DLL also checks relevant loaded-image signatures and the engine control before changing it. On mismatch, it leaves the texture control untouched and continues providing borderless mode. A game update requires revalidation. The fix does not guarantee maximum detail for every texture or resolve unrelated streaming issues.
-
-Both versions apply window changes only at device creation/reset. The combined version applies its texture change at those events too. There is no logging, hotkey handling, background thread, polling, per-frame enforcement or forced window stacking order. The DLL changes presentation/runtime state, not game files, saves or gameplay databases.
-
-## Validation
-
-Borderless 0.1.1 was confirmed working in-game with a desktop chat overlay. Manually disabling the engine mip-fade control resolved the tested texture blur without new issues noticed during initial testing. Combined 0.2.0 passed local checks; its automatic startup behavior still needs in-game confirmation. Longer play, other builds, multiple monitors and other graphics wrappers are unverified.
+See [technical details and build instructions](docs/TECHNICAL.md) and [download checksums](SHA256SUMS.txt).
 
 ## Remove
 
-Close the game, then remove this package's DLL or restore your backed-up DLL. Restore your graphics configuration if you changed it. Restarting without the combined DLL restores the engine's normal mip-fade behavior.
+Close the game and delete this fix's `d3d9.dll`, or restore the DLL you backed up. Restore your graphics configuration if you changed it manually. Launching without the combined DLL restores normal engine mip fading.
 
-## Build
+## Report a problem
 
-Sources and local tests are in `src/borderless` and `src/borderless-texture`. Run the chosen directory's `build.cmd` with Visual Studio 2022 Build Tools and the Windows SDK installed. Builds are x64 with a static C++ runtime. `SHA256SUMS.txt` lists the downloadable packages; each package also includes its DLL checksum.
+[Open an issue](https://github.com/JayKayCreep/LET-IT-DIE-Offline-fixes/issues) with the fix version, game version, Windows version, GPU, other graphics mods, and steps to reproduce. Include a screenshot or short clip if useful.
 
-## Licence and attribution
+## Licence
 
-MIT; see [LICENSE](LICENSE). The borderless wrapper follows the approach in [LET IT DIE Native Borderless](https://github.com/NickLovera/LET-IT-DIE-Native-Borderless), with revised window/reset behavior. These are independent builds, not upstream releases.
+[MIT](LICENSE). Based on the approach used by [LET IT DIE Native Borderless](https://github.com/NickLovera/LET-IT-DIE-Native-Borderless); see [attribution](NOTICE.md). These are independent builds.
