@@ -4,6 +4,8 @@ Borderless fullscreen and a texture-blur fix for **LET IT DIE Offline on Steam**
 
 ## Download
 
+**Full release:** both packages have been checked and approved by the maintainer. Choose one below.
+
 | Version | What it does |
 | --- | --- |
 | [Borderless + Texture Fix 0.2.0](https://github.com/JayKayCreep/LET-IT-DIE-Offline-fixes/raw/refs/heads/main/downloads/LET-IT-DIE-Borderless-Texture-Fix-0.2.0.zip) | Borderless fullscreen and automatic removal of the engine's mip-fade transition, addressing the tested blur and delayed sharpening. |

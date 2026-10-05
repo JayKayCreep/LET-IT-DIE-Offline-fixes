@@ -40,4 +40,6 @@ Builds use x64, C++17, a static C++ runtime, and warnings as errors. The scripts
 - Borderless 0.1.1 was confirmed in-game with a desktop chat overlay.
 - Combined 0.2.0 passed the previously recorded local checks.
 - On 5 October 2026, the maintainer reported testing the automatic texture fix for several hours the previous night, with the fix working and no crashes or other issues observed.
+- On 5 October 2026, the maintainer downloaded and checked both updated packages and approved them for full release.
+- Package documentation and attribution were refreshed; the DLLs and their internal checksums were verified unchanged. Repository ZIP checksums were updated after repacking.
 - Other game builds, multi-monitor setups and other graphics wrappers remain unverified.
